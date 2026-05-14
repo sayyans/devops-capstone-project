@@ -147,7 +147,12 @@ class TestAccountService(TestCase):
 
         resp = self.client.put(
             f"{BASE_URL}/{account.id}",
-            json={"name": "Updated Name"}
+            json={
+                "name": "Updated Name",
+                "email": account.email,
+                "address": account.address,
+                "phone_number": account.phone_number
+            }
         )
 
         self.assertEqual(resp.status_code, 200)
