@@ -116,7 +116,17 @@ def update_account(account_id):
 ######################################################################
 
 # ... place you code here to DELETE an account ...
+@app.route("/accounts/<int:account_id>", methods=["DELETE"])
+def delete_account(account_id):
 
+    account = Account.find(account_id)
+
+    if not account:
+        abort(404, f"Account with id [{account_id}] not found")
+
+    account.delete()
+
+    return "", 204
 
 ######################################################################
 #  U T I L I T Y   F U N C T I O N S
